@@ -43,6 +43,9 @@ public class Bullet : MonoBehaviour
             {
                 explosionSound.Play();
             }
+
+            Data.instance.AddScore(collision.GetComponent<EnemyMove>().scorePoints);
+            Data.instance.ShowDynamicPoints(collision.GetComponent<EnemyMove>().scorePoints, collision.transform.position);
             
             Destroy(collision.gameObject);
             Destroy(gameObject, 3f);

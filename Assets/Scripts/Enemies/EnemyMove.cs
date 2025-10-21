@@ -10,6 +10,9 @@ public class EnemyMove : MonoBehaviour
     [Header("Velocidad")]
     [SerializeField] private float velocidad = 2f;
 
+    [Header("Puntos")]
+    public int scorePoints = 20;
+
     private bool yendoHaciaB = true;
     private SpriteRenderer sprite;
 
