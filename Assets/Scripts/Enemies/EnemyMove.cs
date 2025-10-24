@@ -4,7 +4,7 @@ public class EnemyMove : MonoBehaviour
 {
     // Variables de movimiento
     [Header("Posiciones")]
-    [SerializeField] private Transform puntoA;
+    private Transform puntoA;
     [SerializeField] private Transform puntoB;
 
     [Header("Velocidad")]
@@ -21,16 +21,19 @@ public class EnemyMove : MonoBehaviour
 
     private void Start()
     {
-        rb = GetComponent<Rigidbody2D>();
+        //rb = GetComponent<Rigidbody2D>();
 
-        if (!sprite)
-            sprite = GetComponent<SpriteRenderer>();
+
 
         if (puntoA == null)
         {
-            puntoA = new GameObject("PuntoA").transform;
-            puntoA.position = transform.position;
+            GameObject a = new GameObject("PuntoA_" + name);
+            a.transform.position = transform.position;
+            puntoA = a.transform;
         }
+        
+        if (!sprite)
+            sprite = GetComponent<SpriteRenderer>();
 
 
     }
@@ -39,10 +42,10 @@ public class EnemyMove : MonoBehaviour
     void Update()
     {
         // Determinar el destino actual
-        Vector2 posicionActual = transform.position;
-
-
         Vector2 destino = yendoHaciaB ? puntoB.position : puntoA.position;
+        Vector2 posicionActual = transform.position;
+        
+
         transform.position = Vector2.MoveTowards(posicionActual, destino, velocidad * Time.deltaTime);
 
         // Cambiar de dirección si se ha llegado al destino

@@ -119,6 +119,16 @@ public class PlayerMove : MonoBehaviour
         {
             enSuelo = true;
         }
+
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            enSuelo = true;
+            transform.SetParent(other.transform); // Hacer hijo de la plataforma para que se mueva con ella
+
+        }
+
+
+
     }
 
     private void OnCollisionExit2D(Collision2D other)
@@ -127,6 +137,14 @@ public class PlayerMove : MonoBehaviour
         {
             enSuelo = false;
         }
+
+        if (other.gameObject.CompareTag("Platform"))
+        {
+            enSuelo = false;
+            transform.SetParent(null);
+        }
+
+
     }
 
 }
